@@ -10,9 +10,10 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/styles/style.css">
-    <link rel="stylesheet" href="styles/overlays.css">
-    <link rel="stylesheet" href="styles/configuration.css">
+    <link rel="stylesheet" href="/styles/style.css" />
+    <link rel="stylesheet" href="styles/overlays.css" />
+    <link rel="stylesheet" href="styles/configuration.css" />
+    <link rel="stylesheet" href="styles/game.css" />
   </head>
   <body>
     <div id="backdrop"></div>
@@ -44,7 +45,7 @@
               <h2>Player 1</h2>
               <h3>Player Name</h3>
               <p class="player-symbol">X</p>
-              <button class="btn btn-alt">Edit</button>
+              <button class="btn btn-alt" id="edit-player-1">Edit</button>
             </article>
           </li>
           <li>
@@ -52,30 +53,30 @@
               <h2>Player 2</h2>
               <h3>Player Name</h3>
               <p class="player-symbol">O</p>
-              <button class="btn btn-alt">Edit</button>
+              <button class="btn btn-alt" id="edit-player-2">Edit</button>
             </article>
           </li>
         </ol>
         <button class="btn">Start New Game</button>
       </section>
       <section id="active-game">
-        <article>
-          <h3>You won, <span id="winner-name">PLAYER NAME</span></h3>
+        <article id="game-over">
+          <h2>You won, <span id="winner-name">PLAYER NAME</span></h2>
           <p>Click "Start New Game" button to restart.</p>
         </article>
         <p>It's your turn <span id="active-player-name"> PLAYER NAME</span></p>
-        <ol>
+        <ol id="game-board">
+          <li class="disabled">X</li>
           <li></li>
+          <li class="disabled">O</li>
+
           <li></li>
+          <li>X</li>
           <li></li>
 
           <li></li>
           <li></li>
-          <li></li>
-
-          <li></li>
-          <li></li>
-          <li></li>
+          <li>X</li>
         </ol>
       </section>
     </main>
