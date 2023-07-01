@@ -11,8 +11,11 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="styles/overlays.css">
+    <link rel="stylesheet" href="styles/configuration.css">
   </head>
   <body>
+    <div id="backdrop"></div>
     <header id="main-header">
       <h1>Play Tik, Tac, Toe</h1>
       <p>
@@ -21,16 +24,16 @@
       </p>
     </header>
     <main>
-      <aside>
+      <aside class="modal" id="config-overlay">
         <h2>Choose your name</h2>
         <form>
-          <div>
+          <div id="form-control">
             <label for="playername"></label>
             <input type="text" name="playername" id="playername" />
           </div>
           <div>
-            <button type="reset">Cancel</button>
-            <button type="submit">Confirm</button>
+            <button type="reset" class="btn btn-alt">Cancel</button>
+            <button type="submit" class="btn">Confirm</button>
           </div>
         </form>
       </aside>
@@ -40,20 +43,20 @@
             <article>
               <h2>Player 1</h2>
               <h3>Player Name</h3>
-              <p>X</p>
-              <button>Edit</button>
+              <p class="player-symbol">X</p>
+              <button class="btn btn-alt">Edit</button>
             </article>
           </li>
           <li>
             <article>
               <h2>Player 2</h2>
               <h3>Player Name</h3>
-              <p>O</p>
-              <button>Edit</button>
+              <p class="player-symbol">O</p>
+              <button class="btn btn-alt">Edit</button>
             </article>
           </li>
         </ol>
-        <button>Start New Game</button>
+        <button class="btn">Start New Game</button>
       </section>
       <section id="active-game">
         <article>
