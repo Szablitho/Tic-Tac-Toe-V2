@@ -5,10 +5,10 @@
 #config-overlay h2 {
   margin: 0.5rem 0;
 }
-#form-control {
+.form-control {
   margin: 0.5rem 0;
 }
-#form-control label {
+.form-control label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: bold;
