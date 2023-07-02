@@ -1,13 +1,13 @@
 function startNewGame() {
   //cleaning previous game progress
-  gameFieldElements.forEach(field => { 
-    field.textContent = ''; 
-    field.classList.remove('disabled');
-  })
-  gameFieldElements.forEach(field => field.style.pointerEvents = 'initial');
+  isGameOver = false;
+  let gameFieldIndex = 0;
   for (let i = 0;i<3; i++) {
     for(let l = 0; l <3; l++) {
       gameData[i][l] = 0;
+      gameFieldElements[gameFieldIndex].textContent = '';
+      gameFieldElements[gameFieldIndex].classList.remove("disabled")
+      gameFieldIndex++;
     }
   }
   currentRound = 1;
@@ -31,7 +31,9 @@ function switchPlayer() {
 }
 function selectGameField(event) {
   const selectedField = event.target;
-
+  if (isGameOver) {
+    return;
+  }
   const selectedColumn = selectedField.dataset.col - 1;
   const selectedRow = selectedField.dataset.row - 1;
   //  prevention of updating selected field again
@@ -52,11 +54,12 @@ function selectGameField(event) {
   if (winnerID === 1 || winnerID === 2) {
     gameOverElement.style.display = 'block';
     winnerNameElement.textContent = players[activePlayer].name;
-    gameFieldElements.forEach(field => field.style.pointerEvents = 'none');
   } else if (winnerID === -1) {
     gameOverElement.style.display = 'block';
     gameOverElement.children[0].textContent = "You've made a draw!";
-    gameFieldElements.forEach(field => field.style.pointerEvents = 'none');
+  }
+  if (winnerID > 0) {
+    isGameOver = true;
   }
 
   currentRound++;
