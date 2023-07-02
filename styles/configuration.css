@@ -13,11 +13,11 @@
   margin-bottom: 0.5rem;
   font-weight: bold;
 }
-.form-control {
+.form-control input {
   font-family: inherit;
   border: 1px solid rgb(204, 204, 204);
   width: 15rem;
-  padding: 1.5rem;
+  padding: 0.35rem;
 }
 #game-configuration {
   width: 90%;
