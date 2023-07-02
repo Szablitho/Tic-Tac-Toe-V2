@@ -1,5 +1,6 @@
 let editedPlayer = 0; // ID
 let activePlayer = 0; // for turn logic
+let currentRound = 1;
 let activePlayerNameEl = document.getElementById('active-player-name');
 const players = [
   {
