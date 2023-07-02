@@ -24,6 +24,8 @@ const cancelConfigBtn = document.getElementById('cancel-config-btn');
 const formElement = document.querySelector('form');
 const erroursOutputElement = document.querySelector("#config-errors");
 const gameAreaElement = document.getElementById("active-game");
+const winnerNameElement = document.getElementById("winner-name");
+const gameOverElement = document.getElementById("game-over");
 
 const startNewGameBtn = document.getElementById('start-game-btn');
 const editPlayer1Btn = document.getElementById("edit-player-1-btn");
