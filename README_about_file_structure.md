@@ -5,7 +5,7 @@ Due to big amount of code and different element targets, it has been separated o
  - configuration.css that contains specific rules to config-overlay
  - game.css holds all styles of game area
  ## JavaScript
- - app.js contains global variables and their corresponding elements with event listeners
- ### all logic functions is stored in
- - config.js where form functionality is stored along with validation and displaying form as overlay on the page, also there are stored player's data
+app.js contains global variables and their corresponding elements with event listeners
+ ### all logic is stored in:
+ - config.js where form functionality is stored along with validation and displaying form as overlay on the page, also there is logic for storing player's data and error output
  - game.js is responsible for game logic
