@@ -1,18 +1,21 @@
-function startNewGame() {
-  //cleaning previous game progress
+function resetGameStatus() {
   isGameOver = false;
   let gameFieldIndex = 0;
-  for (let i = 0;i<3; i++) {
-    for(let l = 0; l <3; l++) {
+  currentRound = 1;
+  gameOverElement.style.display = 'none';
+  gameOverElement.firstElementChild.innerHTML = 'You won, <span id="winner-name">PLAYER NAME</span>';
+  for (let i = 0; i < 3; i++) {
+    for (let l = 0; l < 3; l++) {
       gameData[i][l] = 0;
       gameFieldElements[gameFieldIndex].textContent = '';
       gameFieldElements[gameFieldIndex].classList.remove("disabled")
       gameFieldIndex++;
     }
   }
-  currentRound = 1;
-  // end of resetting game progress
+}
 
+function startNewGame() {
+  resetGameStatus();
   if (!players[0].name || !players[1].name) {
     alert("Please set custom player names for both players");
     return;
@@ -20,17 +23,15 @@ function startNewGame() {
   gameAreaElement.style.display = "block";
   activePlayerNameEl.textContent = players[activePlayer].name;
 }
+
 function switchPlayer() {
   activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
-  // if(activePlayer === 0) {
-  //   activePlayer = 1;
-  // } else {
-  //   activePlayer = 0;
-  // }
   activePlayerNameEl.textContent = players[activePlayer].name;
 }
+
 function selectGameField(event) {
   const selectedField = event.target;
+  // prevention of continuing game when winner got found or draw
   if (isGameOver) {
     return;
   }
@@ -48,20 +49,12 @@ function selectGameField(event) {
   gameData[selectedRow][selectedColumn] = activePlayer + 1;
   //checking for winner
   const winnerID = checkForGameOver();
-  console.log("winner issss " + winnerID);
-  console.log(gameData);
-  //showing a winner/draw
-  if (winnerID === 1 || winnerID === 2) {
-    gameOverElement.style.display = 'block';
-    winnerNameElement.textContent = players[activePlayer].name;
-  } else if (winnerID === -1) {
-    gameOverElement.style.display = 'block';
-    gameOverElement.children[0].textContent = "You've made a draw!";
-  }
-  if (winnerID > 0) {
-    isGameOver = true;
-  }
 
+  //showing a winner/draw
+  if (winnerID !== 0) {
+    endGame(winnerID);
+    return;
+  }
   currentRound++;
   switchPlayer();
 }
@@ -88,14 +81,26 @@ function checkForGameOver() {
       return gameData[0][i];
     }
   }
-  // checking diagonal top to bottom
+  // checking diagonal top to bottom starting by top left field
   if (gameData[0][0] > 0 && gameData[0][0] === gameData[1][1] && gameData[1][1] === gameData[2][2]) {
-    return gameData[1][1];
+    return gameData[0][0];
   }
-  // checking diagonal bottom to top
-  if (gameData[0][2] > 0 && gameData[2][0] === gameData[1][1] && gameData[1][1] === gameData[0][0]) {
+  // checking diagonal bottom to top starting by bottom left field
+  if (gameData[2][0] > 0 && gameData[2][0] === gameData[1][1] && gameData[1][1] === gameData[0][2]) {
     return gameData[2][0];
   }
   if (currentRound === 9) { return -1; }
   return 0; // if no winner 0 means no player
+}
+
+function endGame(winnerID) {
+  console.log(winnerID);
+  gameOverElement.style.display = 'block';
+  if (winnerID < 0) {
+    gameOverElement.firstElementChild.textContent = "It's a draw!";
+  } else {
+    gameOverElement.firstElementChild.firstElementChild.textContent = players[winnerID - 1].name;
+    console.log("name updated");
+  }
+  isGameOver = true;
 }
